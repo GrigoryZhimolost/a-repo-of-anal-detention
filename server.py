@@ -26,7 +26,7 @@ class Server:
 		pa = int.from_bytes(self.ch.decrypt(pa[:8], pa[8:]))'''
 
 		#print(f'File size to be received: {format_size_int(pa)}')
-		print("A file will be received")
+		print(f"A file will be received({file_path})")
 
 		with open(file_path, "wb") as file:
 			while True:
@@ -37,6 +37,7 @@ class Server:
 					nonce = data[2048:]
 					file.write(self.ch.decrypt(data[:2048], nonce))
 				else:
+					print(len(data), len(data[:len(data)-8]))
 					nonce = data[len(data) - 8:]
 					file.write(self.ch.decrypt(data[:len(data)-8], nonce))
 		try:

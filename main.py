@@ -31,7 +31,7 @@ elif args.files and args.connect:
 
 	cl = client.Client(args.connect)
 	print(f"The size of files to be sent is {format_size(archive_name)}")
-	print('sending...')
+	print(f'sending {archive_name}...')
 
 	cl.send_file(archive_name)
 
