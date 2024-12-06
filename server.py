@@ -33,8 +33,12 @@ class Server:
 				data = conn.recv(2056)
 				if not data:
 					break
-				nonce = data[2048:]
-				file.write(self.ch.decrypt(data[:2048], nonce))
+				if len(data) == 2056:
+					nonce = data[2048:]
+					file.write(self.ch.decrypt(data[:2048], nonce))
+				else:
+					nonce = data[len(data) - 8:]
+					file.write(self.ch.decrypt(data[:len(data)-8], nonce))
 		try:
 			conn.send("228".encode("utf8"))
 		except:
