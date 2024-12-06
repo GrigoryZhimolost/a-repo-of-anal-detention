@@ -1,6 +1,6 @@
 import socket
 from crpt import Cipher
-from math import ceil
+#from math import ceil
 from os.path import getsize
 from config import PORT
 
@@ -11,9 +11,9 @@ class Client:
 		self.ch = Cipher()
 	
 	def send_file(self, path: str):
-		file_size = ceil(getsize(path) / 2048)
+		'''file_size = ceil(getsize(path) / 2048)
 		size, nonce = self.ch.encrypt(file_size.to_bytes())
-		self.sock.send(size + nonce)
+		self.sock.send(size + nonce)'''
 
 		with open(path, "rb") as file:
 			while True:
