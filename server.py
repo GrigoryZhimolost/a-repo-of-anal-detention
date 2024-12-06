@@ -22,14 +22,15 @@ class Server:
 		self.sock.listen(1)
 		conn, addr = self.sock.accept()
 		print(f'{addr} connected')
-		pa = self.ch.decrypt(conn.recv(16))
-		pa = int.from_bytes(self.ch.decrypt(pa[:8], pa[8:]))
+		'''pa = self.ch.decrypt(conn.recv(16))
+		pa = int.from_bytes(self.ch.decrypt(pa[:8], pa[8:]))'''
 
-		print(f'File size to be received: {format_size_int(pa)}')
+		#print(f'File size to be received: {format_size_int(pa)}')
+		print("A file will be received")
 
 		with open(file_path, "wb") as file:
 			while True:
-				data = conn.recv(2048)
+				data = conn.recv(2056)
 				if not data:
 					break
 				nonce = data[2048:]
