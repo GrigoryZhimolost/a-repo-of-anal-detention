@@ -1,0 +1,2 @@
+pycryptodome == 3.21.0
+crc = 7.1.0
